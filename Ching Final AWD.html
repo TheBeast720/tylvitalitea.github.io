@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vitalitea - Coffee Shop</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #6b6b6b;
+        }
+
+        .navbar {
+            background-color: #111 !important;
+        }
+
+        .navbar-brand {
+            font-size: 30px;
+            font-weight: bold;
+            color: #fff !important;
+        }
+
+        .navbar-nav .nav-link {
+            color: #fff !important;
+            font-size: 18px;
+        }
+
+        .jumbotron {
+            background-size: cover;
+            background-position: center;
+            color: #fff;
+            padding: 100px 0;
+            text-align: center;
+        }
+
+        .jumbotron h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        .jumbotron p {
+            font-size: 24px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        .card {
+            border: none;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card-title {
+            font-size: 24px;
+            margin-bottom: 10px;
+            color: #111;
+        }
+
+        .card-text {
+            color: #000000;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .btn-primary {
+            background-color: #111;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-transform: uppercase;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .btn-primary:hover {
+            background-color: #333;
+        }
+
+        .container-sm {
+            align-items: left;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">Vitalitea</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Shop</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" id="cart">Cart (0)</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-5">
+        <div class="row" id="products">
+            <!-- Products will be added dynamically here -->
+        </div>
+    </div>
+
+    <section id="about" class="mt-5" style="color: white;">
+        <div class="container">
+            <h2>About Us</h2>
+            <p>Thank you for visiting Vitalitea, your one-stop shop for superior tea and coffee. Our passion is offering
+                you the best range of beverages to make your day more enjoyable. We make sure that every taste of our
+                carefully made beverages is an experience to remember because to our dedication to quality.
+                At Vitalitea, we ensure fair trade standards and sustainability by sourcing our tea leaves and coffee
+                beans from the world's top growers. We provide something to satisfy your palate whether you're a tea or
+                coffee connoisseur.
+                Taste the difference and take your beverage experience to the next level with Vitalitea. Come along on
+                an aromatic, flavorful, and satisfying adventure with us.</p>
+        </div>
+    </section>
+
+    <section id="contact" class="mt-5" style="background-color: black; color: white;">
+        <div class="container-sm">
+            <h2>Contact Us</h2>
+            <p>If you have any questions, feedback, or inquiries, feel free to get in touch with us. We value your input
+                and are dedicated to providing you with excellent customer service.</p>
+            <ul>
+                <li>Email: tasteitbetter@vitalitea.com</li>
+                <li>Phone: 938-0988</li>
+                <li>Address: 214 Crossfar St. Kumambao Lumbao Hambalo City</li>
+                <br>
+            </ul>
+        </div>
+    </section>
+
+    <div class="modal fade" id="cartModal" tabindex="-1" role="dialog" aria-labelledby="cartModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="cartModalLabel">Your Cart</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <ul id="cartItems" class="list-group">
+                        <!-- Cart items will be added dynamically here -->
+                    </ul>
+                    <p>Total: <span id="totalAmount">₱0.00</span></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="checkout">Checkout</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="paymentModal" tabindex="-1" role="dialog" aria-labelledby="paymentModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="paymentModalLabel">Select Payment Method</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <select class="form-control" id="paymentMethod">
+                        <option value="Credit Card">Credit Card</option>
+                        <option value="GCash">GCash</option>
+                        <option value="Cash on Delivery">Cash on Delivery</option>
+                    </select>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary" id="confirmPayment">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            const products = [
+                { id: 1, name: 'Espresso', price: 149.99, image: 'espresso.jpg' },
+                { id: 2, name: 'Cappuccino', price: 149.99, image: 'cappuccino.jpg' },
+                { id: 3, name: 'Latte', price: 99.99, image: 'latte.jpg' },
+                { id: 4, name: 'Mocha', price: 299.99, image: 'mocha.jpg' },
+                { id: 5, name: 'Americano', price: 249.99, image: 'americano.jpg' },
+                { id: 6, name: 'Macchiato', price: 199.99, image: 'macchiato.jpg' }
+            ];
+
+            products.forEach(product => {
+                $('#products').append(`
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <img src="${product.image}" class="card-img-top" alt="${product.name}">
+                    <div class="card-body">
+                        <h5 class="card-title">${product.name}</h5>
+                        <p class="card-text">₱${product.price}</p>
+                        <div class="form-group">
+                            <label for="quantity-${product.id}">Quantity:</label>
+                            <input type="number" class="form-control" id="quantity-${product.id}" value="1" min="1">
+                        </div>
+                        <button class="btn btn-primary add-to-cart" data-id="${product.id}" data-name="${product.name}" data-price="${product.price}">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+        `);
+            });
+
+            function updateCart() {
+                const cart = JSON.parse(localStorage.getItem('cart')) || [];
+                $('#cart').text(`Cart (${cart.length})`);
+                let totalAmount = 0;
+                cart.forEach(item => {
+                    totalAmount += parseFloat(item.price);
+                });
+                $('#totalAmount').text(`₱${totalAmount.toFixed(2)}`);
+                if (cart.length === 0) {
+                    $('#checkout').prop('disabled', true);
+                } else {
+                    $('#checkout').prop('disabled', false);
+                }
+            }
+
+            $('#cart').on('click', function () {
+                updateCart();
+                const cart = JSON.parse(localStorage.getItem('cart')) || [];
+                $('#cartItems').empty();
+                cart.forEach(item => {
+                    $('#cartItems').append(`<li class="list-group-item">${item.name} - ₱${item.price} <button class="btn btn-danger btn-sm remove-item" data-id="${item.id}">Remove</button></li>`);
+                });
+                $('#cartModal').modal('show');
+            });
+
+            $(document).on('click', '.add-to-cart', function () {
+                const id = $(this).data('id');
+                const name = $(this).data('name');
+                const price = $(this).data('price');
+                const quantity = $(`#quantity-${id}`).val();
+                const cart = JSON.parse(localStorage.getItem('cart')) || [];
+                for (let i = 0; i < quantity; i++) {
+                    cart.push({ id, name, price });
+                }
+                localStorage.setItem('cart', JSON.stringify(cart));
+                updateCart();
+            });
+
+            $(document).on('click', '.remove-item', function () {
+                const id = $(this).data('id');
+                let cart = JSON.parse(localStorage.getItem('cart')) || [];
+                const index = cart.findIndex(item => item.id === id);
+                if (index !== -1) {
+                    cart.splice(index, 1);
+                    localStorage.setItem('cart', JSON.stringify(cart));
+                    updateCart();
+                    $('#cart').trigger('click');
+                }
+            });
+
+            $('#checkout').on('click', function () {
+                const cart = JSON.parse(localStorage.getItem('cart')) || [];
+                if (cart.length === 0) {
+                    return;
+                }
+                $('#paymentModal').modal('show');
+            });
+
+            $('#confirmPayment').on('click', function () {
+                const selectedOption = $('#paymentMethod').val();
+                localStorage.removeItem('cart');
+                updateCart();
+                $('#cartModal').modal('hide');
+                $('#paymentModal').modal('hide');
+                alert('Checkout is complete. Thank you for your purchase! Selected payment method: ' + selectedOption);
+            });
+
+            updateCart();
+        });
+    </script>
+</body>
+
+</html>
